@@ -1,0 +1,1 @@
+{"namespace":"Demo","database":{"type":"SqlServer","name":"Demo","containerId":"demo-db","username":"sa","password":"P@ssw0rd"},"app":{"package":{"folder":"./publish","architecture":"LinuxArm64"}}}
