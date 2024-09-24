@@ -1,0 +1,37 @@
+# Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP .NET Core service.
+
+# To Start, Run command `docker-compose up -d --build`
+
+services:
+  demo-db:
+    image: postgres:14-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - ~/apps/postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=P@ssw0rd
+      - POSTGRES_USER=root
+      - POSTGRES_DB=demodb
+    working_dir: /tmp/scripts
+
+
+  demo-pgadmin:
+    image: dpage/pgadmin4:latest
+    restart: always
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=postgres@postgresql.org
+      - PGADMIN_DEFAULT_PASSWORD=postgres
+      - PGADMIN_CONFIG_SERVER_MODE=False
+      - PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED=False
+    ports:
+      - "6001:80"
+    volumes:
+      - "./pgadmin.json:/pgadmin4/servers.json"
+    entrypoint:
+      - "/bin/sh"
+      - "-c"
+      - "/bin/echo 'db:5432:*:postgres:postgres' > /tmp/pgpassfile && chmod 0600 /tmp/pgpassfile && /entrypoint.sh"
+      - 
+
+

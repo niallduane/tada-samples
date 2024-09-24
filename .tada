@@ -1,0 +1,1 @@
+{"namespace":"Demo","database":{"type":"Postgres","name":"demodb","containerId":"demo-db","username":"root","password":"P@ssw0rd"},"app":{"package":{"folder":"./publish","architecture":"LinuxArm64"}}}
